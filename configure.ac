@@ -202,6 +202,7 @@ ARG_ENABL_SET([eap-aka],        [enable EAP AKA authentication module.])
 ARG_ENABL_SET([eap-aka-3gpp],   [enable EAP AKA backend implementing 3GPP MILENAGE algorithms in software.])
 ARG_ENABL_SET([eap-aka-3gpp2],  [enable EAP AKA backend implementing 3GPP2 algorithms in software. Requires libgmp.])
 ARG_ENABL_SET([eap-simaka-sql], [enable EAP-SIM/AKA backend based on a triplet/quintuplet SQL database.])
+ARG_ENABL_SET([eap-simaka-rest], [enable EAP-SIM/AKA backend based on requesting triplets/quintuplets over UNIX domain socket.])
 ARG_ENABL_SET([eap-simaka-pseudonym], [enable EAP-SIM/AKA pseudonym storage plugin.])
 ARG_ENABL_SET([eap-simaka-reauth],    [enable EAP-SIM/AKA reauthentication data storage plugin.])
 ARG_ENABL_SET([eap-identity],   [enable EAP module providing EAP-Identity helper.])
@@ -1619,6 +1620,7 @@ ADD_PLUGIN([eap-aka],              [c charon])
 ADD_PLUGIN([eap-aka-3gpp],         [c charon])
 ADD_PLUGIN([eap-aka-3gpp2],        [c charon])
 ADD_PLUGIN([eap-simaka-sql],       [c charon])
+ADD_PLUGIN([eap-simaka-rest],       [c charon])
 ADD_PLUGIN([eap-simaka-pseudonym], [c charon])
 ADD_PLUGIN([eap-simaka-reauth],    [c charon])
 ADD_PLUGIN([eap-md5],              [c charon nm cmd])
@@ -1790,6 +1792,7 @@ AM_CONDITIONAL(USE_EAP_SIM, test x$eap_sim = xtrue)
 AM_CONDITIONAL(USE_EAP_SIM_FILE, test x$eap_sim_file = xtrue)
 AM_CONDITIONAL(USE_EAP_SIM_PCSC, test x$eap_sim_pcsc = xtrue)
 AM_CONDITIONAL(USE_EAP_SIMAKA_SQL, test x$eap_simaka_sql = xtrue)
+AM_CONDITIONAL(USE_EAP_SIMAKA_REST, test x$eap_simaka_rest = xtrue)
 AM_CONDITIONAL(USE_EAP_SIMAKA_PSEUDONYM, test x$eap_simaka_pseudonym = xtrue)
 AM_CONDITIONAL(USE_EAP_SIMAKA_REAUTH, test x$eap_simaka_reauth = xtrue)
 AM_CONDITIONAL(USE_EAP_IDENTITY, test x$eap_identity = xtrue)
@@ -1929,7 +1932,7 @@ fi
 if test x$fuzzing = xtrue; then
 	AC_DEFINE([USE_FUZZING], [], [build code for fuzzing])
 fi
-if test x$imc_swima = xtrue -o x$imv_swima = xtrue; then
+if test x$imc_swima = xtrue -o x$imv_swima = xtrue -o x$eap_simaka_rest = xtrue; then
 	AC_DEFINE([USE_JSON], [], [build code for JSON])
 fi
 
@@ -2082,6 +2085,7 @@ AC_CONFIG_FILES([
 	src/libcharon/plugins/eap_sim_file/Makefile
 	src/libcharon/plugins/eap_sim_pcsc/Makefile
 	src/libcharon/plugins/eap_simaka_sql/Makefile
+	src/libcharon/plugins/eap_simaka_rest/Makefile
 	src/libcharon/plugins/eap_simaka_pseudonym/Makefile
 	src/libcharon/plugins/eap_simaka_reauth/Makefile
 	src/libcharon/plugins/eap_mschapv2/Makefile

@@ -1,0 +1,3 @@
+charon.plugins.eap-simaka-rest.uri =
+
+charon.plugins.eap-simaka-rest.timeout = no

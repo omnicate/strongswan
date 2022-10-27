@@ -1,0 +1,50 @@
+/*
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.  See <http://www.fsf.org/copyleft/gpl.txt>.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+ * for more details.
+ */
+
+/**
+ * @defgroup eap_simaka_rest_provider eap_simaka_rest_provider
+ * @{ @ingroup eap_simaka_rest
+ */
+
+#ifndef eap_simaka_rest_PROVIDER_H_
+#define eap_simaka_rest_PROVIDER_H_
+
+#include "eap_simaka_rest_client.h"
+
+#include <simaka_provider.h>
+
+typedef struct eap_simaka_rest_provider_t eap_simaka_rest_provider_t;
+
+/**
+ * SIM provider implementation using a triplet/quintuplet database backend.
+ */
+struct eap_simaka_rest_provider_t {
+
+	/**
+	 * Implements simaka_provider_t interface
+	 */
+	simaka_provider_t provider;
+
+	/**
+	 * Destroy a eap_simaka_rest_provider_t.
+	 */
+	void (*destroy)(eap_simaka_rest_provider_t *this);
+};
+
+/**
+ * Create a eap_simaka_rest_provider instance.
+ *
+ * @param uri			AuC/quintuplet REST endpoint
+ */
+eap_simaka_rest_provider_t *eap_simaka_rest_provider_create(eap_simaka_rest_client_t *client);
+
+#endif /** eap_simaka_rest_PROVIDER_H_ @}*/
