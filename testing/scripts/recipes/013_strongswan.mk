@@ -30,6 +30,7 @@ CONFIG_OPTS = \
 	--enable-eap-sim \
 	--enable-eap-sim-file \
 	--enable-eap-simaka-sql \
+	--enable-eap-simaka-rest \
 	--enable-eap-md5 \
 	--enable-md4 \
 	--enable-eap-mschapv2 \

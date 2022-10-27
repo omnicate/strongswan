@@ -363,6 +363,13 @@ if MONOLITHIC
 endif
 endif
 
+if USE_EAP_SIMAKA_REST
+  SUBDIRS += plugins/eap_simaka_rest
+if MONOLITHIC
+  libcharon_la_LIBADD += plugins/eap_simaka_rest/libstrongswan-eap-simaka-rest.la
+endif
+endif
+
 if USE_EAP_SIMAKA_PSEUDONYM
   SUBDIRS += plugins/eap_simaka_pseudonym
 if MONOLITHIC

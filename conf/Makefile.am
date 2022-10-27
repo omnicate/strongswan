@@ -50,6 +50,7 @@ plugins = \
 	plugins/eap-radius.opt \
 	plugins/eap-sim.opt \
 	plugins/eap-simaka-sql.opt \
+	plugins/eap-simaka-rest.opt \
 	plugins/eap-tls.opt \
 	plugins/eap-tnc.opt \
 	plugins/eap-ttls.opt \
